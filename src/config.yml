@@ -1,0 +1,14 @@
+# Bot configuration file
+
+# User token used for authentication (keep this secure).
+# Do not share this publicly or commit it to version control without precautions.
+token: ""
+
+# The message to be sent periodically by the bot.
+message: ""
+
+# The channel ID where the message should be sent.
+channel: 0
+
+# Interval for sending the message, specified in seconds.
+interval: 60
