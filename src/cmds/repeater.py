@@ -7,16 +7,21 @@ class Repeater(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.settings = yaml.safe_load(open("config.yml", "r").read())
-        self.channel_id = self.settings.get("channel")  # Use .get() to avoid KeyError if channel isn't present
         self.message_loop.start()  # This will automatically start the loop
-        self.channel = self.bot.get_channel(self.channel_id)
-        if self.channel:
-            print(f"Channel found. (ID {self.channel.id})")
-        else:
-            print("Channel not found")
-
+        self.channels = []
+        self.get_channels()
+        
     def cog_unload(self):
         self.message_loop.stop()
+    
+    def get_channels(self):
+        for id in self.settings.get("channels"):
+            try:
+                channel = self.bot.get_channel(id)
+                self.channels.append(channel)
+            except:
+                print(f"Couldn't retrieve channel: {id}")
+        
 
     @commands.Cog.listener()
     async def on_message(self, message):
@@ -25,8 +30,9 @@ class Repeater(commands.Cog):
 
     @tasks.loop(seconds=60)  # Default interval, adjusted in start_loop()
     async def message_loop(self):
-        if self.channel:
-            await self.channel.send(self.settings["message"])
+        if self.channels:
+            for channel in self.channels:
+                await self.channel.send(self.settings["message"])
         else:
             print(f"Channel with ID {self.channel_id} not found.")
 

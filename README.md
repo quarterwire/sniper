@@ -33,7 +33,7 @@ Edit the config.yml file with your own details:
 ```yaml
 token: "your_discord_bot_token"
 message: "your message"
-channel: 0 # Make sure it is an integer
+channels: [0, 1] # An lists of channels to send the same message. Make sure it is an integer
 interval: 60 # Time interval for the message loop (in seconds)
 ```
 
