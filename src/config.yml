@@ -5,10 +5,13 @@
 token: ""
 
 # The message to be sent periodically by the bot.
-message: ""
 
+list:
+  - channel: 0
+    message: ""
+  - channel: 1
+    message: ""
 # The channel ID where the message should be sent.
-channel: 0
 
 # Interval for sending the message, specified in seconds.
 interval: 60
