@@ -6,7 +6,7 @@ token: ""
 
 # The message to be sent periodically by the bot.
 
-list:
+channels:
   - channel: 0
     message: ""
   - channel: 1
