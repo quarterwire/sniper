@@ -20,7 +20,7 @@ class Repeater(commands.Cog):
         """
         for entry in self.settings.get("channels", []):  # Iterate over the channels array
             try:
-                channel_id = entry["id"]
+                channel_id = entry["channel"]
                 message = entry["message"]
                 channel = self.bot.get_channel(channel_id)
                 if channel is not None:
